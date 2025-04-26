@@ -1,13 +1,13 @@
-package org.mikhailov.dm.eventnotif;
+package org.mikhailov.dm.eventnotificator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EventnotifApplication {
+public class EventNotificatorApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EventnotifApplication.class, args);
+        SpringApplication.run(EventNotificatorApplication.class, args);
     }
 
 }
