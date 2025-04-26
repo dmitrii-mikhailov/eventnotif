@@ -63,5 +63,4 @@ public class NotificationController {
                 notification.getLocationId()
         );
     }
-    //todo: сделать метод POST и добавить автоудаление прочитанных сообщений
 }
