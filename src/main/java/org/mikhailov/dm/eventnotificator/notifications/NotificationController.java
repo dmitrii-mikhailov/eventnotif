@@ -18,10 +18,12 @@ public class NotificationController {
     private static final Logger log = LoggerFactory.getLogger(NotificationController.class);
     private final NotificationService notificationService;
     private final MarkAsReadConverter markAsReadConverter;
+    private final NotificationDtoConverter notificationDtoConverter;
 
-    public NotificationController(NotificationService notificationService, MarkAsReadConverter markAsReadConverter) {
+    public NotificationController(NotificationService notificationService, MarkAsReadConverter markAsReadConverter, NotificationDtoConverter notificationDtoConverter) {
         this.notificationService = notificationService;
         this.markAsReadConverter = markAsReadConverter;
+        this.notificationDtoConverter = notificationDtoConverter;
     }
 
     @GetMapping
@@ -34,7 +36,7 @@ public class NotificationController {
                 .status(HttpStatus.OK)
                 .body(unreadNotifications
                         .stream()
-                        .map(this::toDto)
+                        .map(notificationDtoConverter::toDto)
                         .toList());
     }
 
@@ -51,16 +53,4 @@ public class NotificationController {
                 .build();
     }
 
-
-    private NotificationDto toDto(Notification notification) {
-        return new NotificationDto(
-                notification.getEventId(),
-                notification.getName(),
-                notification.getMaxPlaces(),
-                notification.getDate(),
-                notification.getCost(),
-                notification.getDuration(),
-                notification.getLocationId()
-        );
-    }
 }
